@@ -6,7 +6,6 @@ import (
 	"log"
 	"net"
 	"os"
-	"strconv"
 	"time"
 )
 
@@ -78,9 +77,12 @@ func handleRequest(conn net.Conn) {
 		}
 
 		//1610688413.782391 node1 ce783874ba65a148930de32704cd4c809d22a98359f7aed2c2085bc1bd10f096
+
 		// log to stdout the msg received
-		clientTime, err := strconv.ParseFloat(string(buffer[:18]), 64)
-		delay := float64(time.Now().UnixMicro())/1e6 - clientTime
+		//clientTime, err := strconv.ParseFloat(string(buffer[:18]), 64)
+		// FIXME: delay!
+		//delay := float64(time.Now().UnixMicro())/1e6 - clientTime
+
 		totalBandwidth += len(buffer)
 
 		fmt.Fprintf(os.Stdout, "%s", string(buffer[:]))
